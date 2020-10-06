@@ -1,0 +1,176 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+int suma;
+int resta;
+int mul=1;
+int divi;
+int pot;
+int prom;
+
+
+
+void sumador_puntero(int *b){
+	*b=0+*b;
+   suma=suma+*b;
+}
+
+void restador_puntero(int *b){
+  *b=*b-0;
+  resta=resta-*b;
+}
+
+void multiplica_puntero(int *a)
+{
+  *a=(*a)*1;
+  mul=(*a)*mul;
+}
+
+void division(int *a, int *b)
+{
+  divi= (*a )/(*b);
+}
+
+void potencia(int *a, int *b)
+{
+  pot=pow(*a,*b);
+}
+
+int main(int argc, char const *argv[]) {
+	int op;int n;
+  int *n1;
+  int *n2;
+  int opcion;
+  n1=malloc(sizeof(int)*100);
+  n2=malloc(sizeof(int)*100);
+  printf("Calculadora. Ingrese una de las siguientes opciones: \n 1. Suma \n 2. Resta \n 3. Multiplicacion \n 4. División \n 5. Potencia \n 6. Salir \n ");
+  do{
+    scanf("%i",&op);
+	  switch(op) {
+    
+		case 1 :
+			printf("Usted seleccionó la opción 1 \n");
+      printf("Ingrese la cantidad de números que desea sumar:  ");
+      scanf("%d",&n);
+      for (int a=0;a<n;a=a+1){
+      printf("Ingrese numero a sumar : ");
+      scanf("%d",&*n1);
+      sumador_puntero(n1);
+      free(n1);
+      }
+      printf("%i\n", suma);
+
+      printf("\n ¿Desea calcular el promedio de los números ingresados? Opciones: \n 1. Sí, deseo calcular el promedio  \n 2. No deseo calcular el promedio \n");
+      scanf("%d",&opcion);
+      if(opcion==1)
+      {
+        printf("Su promedio es ");
+        printf("%i\n", suma/n);
+        printf("¿Desea realizar otra operación? Ingrese un número a continuación: ");
+        break;
+        op=scanf("%d",&op);
+      }
+
+      if(opcion==2)
+      {
+        printf("Usted decidió no promediar sus números \n");
+        printf("¿Desea realizar otra operación? Ingrese un número a continuación: ");
+        break;
+        op=scanf("%d",&op);
+      }
+    break;
+
+
+
+		case 2 :
+
+			printf("Usted seleccionó la opción 2 \n");
+      printf("Ingrese la cantidad de numeros que desea restar : ");
+      scanf("%d",&n);
+      for (int a=0;a<1;a=a+1){
+      printf("Ingrese numero a restar : ");
+      scanf("%d",&*n1);
+      restador_puntero(n1);
+      free(n1);
+      }
+      printf("%i\n", resta);
+
+      printf("¿Desea realizar otra operación? Ingrese un número a continuación: ");
+      break;
+      op=scanf("%d",&op);
+
+
+
+		case 3 :
+      printf("Usted seleccionó la opción 3 \n");
+      printf("Ingrese la cantidad de numeros que desea Multiplicar : ");
+      scanf("%d",&n);
+      for (int a=0;a<n;a=a+1){
+      printf("Ingrese el primer numero a multiplicar : ");
+      scanf("%d",&*n1);
+      multiplica_puntero(n1);
+      free(n1);
+      }
+      printf("%i\n", mul);
+      
+      printf("¿Desea realizar otra operación? Ingrese un número a continuación: ");
+      break;
+      op=scanf("%d",&op);
+
+
+
+		case 4 :
+    	printf("Usted seleccionó la opción 4 \n");
+      int *puntero_dividendo, *puntero_divisor;
+      puntero_dividendo=malloc(sizeof(int)*100);
+      puntero_divisor=malloc(sizeof(int)*100);
+
+      printf("Ingrese dividendo: ");
+      scanf("%d",&*puntero_divisor);
+      printf("Ingrese divisor: ");
+      scanf("%d",&*puntero_dividendo);
+      division(puntero_divisor,puntero_dividendo);
+      printf("%d",divi);
+
+      free(puntero_dividendo);
+      free(puntero_divisor);
+      printf("\n ¿Desea realizar otra operación? Ingrese un número a continuación: ");
+      break;
+      op=scanf("%d",&op);
+
+
+		case 5 :
+			printf("Usted seleccionó la opción 5 \n");
+      int *puntero_base, *puntero_exponente;
+
+      puntero_base=malloc(sizeof(int)*100);
+      puntero_exponente=malloc(sizeof(int)*100);
+
+      printf("Ingrese base: ");
+      scanf("%d",&*puntero_base);
+      printf("Ingrese exponente: ");
+      scanf("%d",&*puntero_exponente);
+      potencia(puntero_base, puntero_exponente);
+      printf("%d",pot);
+
+      free(puntero_base);
+      free(puntero_exponente);
+
+      printf("\n ¿Desea realizar otra operación? Ingrese un número a continuación: ");
+      break;
+      op=scanf("%d",&op);
+    
+    case 6: break;
+
+
+		default :
+      printf("\n La opción ingresada no existe, por favor ingrese una opción válida a continuación:");
+      break;
+      op=scanf("%d",&op);
+
+  }
+  }while(op!=6); printf("¡Gracias por usar la calculadora! :) ");
+  return 0;
+
+}
